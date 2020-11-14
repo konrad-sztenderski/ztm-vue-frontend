@@ -1,6 +1,11 @@
-import {createApp} from 'vue'
+import {createApp} from 'vue';
 // @ts-ignore
-import {createStore} from 'vuex'
+import {createStore} from 'vuex';
+
+import 'jquery'
+import 'bootstrap/dist/js/bootstrap.bundle.js';
+import 'bootstrap/dist/css/bootstrap.css'
+
 import App from '@/App.vue';
 import router from '@/router';
 

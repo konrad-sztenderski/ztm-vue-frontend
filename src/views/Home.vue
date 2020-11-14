@@ -8,11 +8,13 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import {Options, Vue} from 'vue-class-component';
 
-export default {
-  name: 'Home',
+@Options({
   components: {
     HelloWorld
   }
+})
+export default class Home extends Vue {
 }
 </script>
