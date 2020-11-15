@@ -9,8 +9,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import App from '@/App.vue';
 import router from '@/router';
 
-console.log(createStore)
-
 const app = createApp(App)
     .use(router)
     .use(createStore({}));
