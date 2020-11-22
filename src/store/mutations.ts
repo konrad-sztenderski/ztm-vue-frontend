@@ -5,7 +5,7 @@ enum MutationsTypes {
     SET_MENU = 'SET_MENU'
 }
 
-type Mutations<S = State> = {
+export type Mutations<S = State> = {
     [MutationsTypes.SET_MENU](state: S, payload: Menu[]): void
 }
 

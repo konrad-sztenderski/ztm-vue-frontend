@@ -1,13 +1,15 @@
 <template>
-    <div id="nav">
-        <router-link v-for="link of this.$store.menu" :key="link.href" :to="link.href">{{ $i18n(link.content) }}
+    <div id="nav" class="d-flex justify-content-center">
+        <router-link v-for="link of $store.state.menu" :key="link.href" :to="link.href" class="m-2">
+            {{ $i18n(link.content) }}
         </router-link>
     </div>
 </template>
-<script>
+<script lang="ts">
 import {Vue} from 'vue-class-component';
 
 export default class Menu extends Vue {
+
 }
 </script>
 
