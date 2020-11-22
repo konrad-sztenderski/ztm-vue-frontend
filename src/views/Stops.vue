@@ -7,7 +7,7 @@
 <script>
 import {Vue} from 'vue-class-component';
 
-export default class Favourites extends Vue {
+export default class Stops extends Vue {
 }
 </script>
 

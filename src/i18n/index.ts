@@ -1,12 +1,16 @@
 export default {
     en: {
-        message: {
-            hello: 'hello world'
-        }
+        menu: {
+            main: 'Stops',
+            favourites: 'Favourites',
+            login: 'Login',
+        },
     },
     pl: {
-        message: {
-            hello: 'siema'
-        }
-    }
+        menu: {
+            main: 'Przystanki',
+            favourites: 'Ulubione',
+            login: 'Logowanie',
+        },
+    },
 }
