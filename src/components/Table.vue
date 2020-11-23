@@ -1,8 +1,8 @@
 <template>
-    <table class="table">
+    <table class="table text-center">
         <thead>
         <tr>
-            <th v-for="(header, idx) of headers" :key="idx" scope="col">{{ header }}</th>
+            <th v-for="(header, idx) of headers" :key="idx" scope="col">{{header}}</th>
         </tr>
         </thead>
         <tbody>

@@ -1,8 +1,12 @@
 <template>
     <div class="container">
         <Table :headers="table.headers" :rows="table.data">
-            <template #id="{cell}">{{ cell }}</template>
-            <template #name="{cell}">{{ cell }}</template>
+            <template #direction="{cell}">{{cell}}</template>
+            <template #estimatedTime="{cell}">{{cell}}</template>
+            <template #delay="{cell}">{{cell}}</template>
+            <template #favourites="{cell}">
+                <a :href="`#${cell}`">+</a>
+            </template>
         </Table>
     </div>
 </template>
@@ -15,12 +19,26 @@ import Table from '@/components/Table.vue';
     components: {Table}
 })
 export default class Stops extends Vue {
-    private readonly table = {
-        headers: ['test', 'siema'],
-        data: [{
-            id: 1,
-            name: 'wow'
-        }]
+    private table!: {
+        headers: string[],
+        data: {
+            direction: string,
+            estimatedTime: string,
+            delay: string,
+            favourites: string,
+        }[]
+    }
+
+    created() {
+        this.table = {
+            headers: [this.$i18n('stops.table.direction'), this.$i18n('stops.table.estimatedTime'), this.$i18n('stops.table.delay'), this.$i18n('stops.table.favourites')],
+            data: [{
+                direction: 'Oliwa',
+                estimatedTime: '18:20',
+                delay: '-52s',
+                favourites: 'T201R12',
+            }]
+        }
     }
 }
 </script>

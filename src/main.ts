@@ -14,7 +14,8 @@ import 'reflect-metadata';
 
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
-        $store: Store
+        $store: Store,
+        $i18n: (key: string) => string
     }
 }
 
