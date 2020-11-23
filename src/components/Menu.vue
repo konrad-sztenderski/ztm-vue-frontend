@@ -1,7 +1,7 @@
 <template>
     <div id="nav" class="d-flex justify-content-center">
-        <router-link v-for="link of $store.state.menu" :key="link.href" :to="link.href" class="m-2">
-            {{ $i18n(link.content) }}
+        <router-link v-for="link of $store.state.menu" class="m-2" :key="link.href" :to="link.href">
+            {{$i18n(link.content)}}
         </router-link>
     </div>
 </template>

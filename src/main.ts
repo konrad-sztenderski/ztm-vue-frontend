@@ -9,6 +9,7 @@ import i18nPlugin from '@/i18n/i18nPlugin'
 import 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import 'bootstrap/dist/css/bootstrap.css';
+import '@/assets/main.css';
 
 import 'reflect-metadata';
 
