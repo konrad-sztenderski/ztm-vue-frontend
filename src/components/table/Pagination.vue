@@ -1,7 +1,7 @@
 <template>
     <nav>
         <ul class="pagination justify-content-center">
-            <li class="page-item">
+            <li class="page-item" :class="{disabled: currPage === 1}">
                 <router-link class="page-link" :to="{query: {page: 1}}" append :event="prevPage ? 'click' : ''">
                     First
                 </router-link>
@@ -15,7 +15,7 @@
                     {{i}}
                 </router-link>
             </li>
-            <li class="page-item">
+            <li class="page-item" :class="{disabled: currPage === lastPage}">
                 <router-link class="page-link" :to="{query: {page: lastPage}}" append :event="lastPage ? 'click' : ''">
                     Last
                 </router-link>
