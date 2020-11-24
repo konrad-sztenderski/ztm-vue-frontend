@@ -2,7 +2,7 @@ type DefaultFetchType = { [key: string]: any; };
 type HeadersType = { [key: string]: string };
 
 export default class Fetcher {
-    static async Get<T = DefaultFetchType, K = { [key: string]: string }>(path: string, data?: K): Promise<T> {
+    static async Get<T = DefaultFetchType, K = { [key: string]: string }>(path: string, data?: K, headers: HeadersType = {}): Promise<T> {
         if(data !== undefined) {
             let keys = Object.keys(data) as (keyof K)[];
             if(keys.length > 0) {
@@ -19,7 +19,8 @@ export default class Fetcher {
         }
 
         let request = new Request(path, {
-            method: 'GET'
+            method: 'GET',
+            headers,
         });
 
         return Fetcher.ParseRequest(request);
@@ -29,7 +30,10 @@ export default class Fetcher {
         let request = new Request(path, {
             method: 'POST',
             body: JSON.stringify(data),
-            headers
+            headers: {
+                'Content-Type': 'application/json',
+                ...headers
+            },
         });
 
         return Fetcher.ParseRequest(request);
@@ -38,7 +42,7 @@ export default class Fetcher {
     static async Put<T = DefaultFetchType, K = {}>(path: string, data: K): Promise<T> {
         let request = new Request(path, {
             method: 'PUT',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         });
 
         return Fetcher.ParseRequest(request);
@@ -47,7 +51,7 @@ export default class Fetcher {
     static async Delete<T = DefaultFetchType>(path: string, headers: HeadersType = {}): Promise<T> {
         let request = new Request(path, {
             method: 'DELETE',
-            headers
+            headers,
         });
 
         return Fetcher.ParseRequest(request);
@@ -56,7 +60,9 @@ export default class Fetcher {
     private static async ParseRequest(request: Request): Promise<any | never> {
         let response = await fetch(request);
         if(response.status >= 200 && response.status < 300) {
-            return await response.json();
+            if(response.status !== 204) {
+                return await response.json();
+            }
         } else {
             throw response.statusText;
         }

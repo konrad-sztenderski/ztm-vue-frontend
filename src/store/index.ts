@@ -10,7 +10,7 @@ const store = createStore({
 export type Store = Omit<VuexStore<State>, 'commit'> & {
     commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
         key: K,
-        payload: P,
+        payload?: P,
         options?: CommitOptions
     ): ReturnType<Mutations[K]>
 }

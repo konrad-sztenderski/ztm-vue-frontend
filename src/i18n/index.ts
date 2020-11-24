@@ -4,6 +4,7 @@ export default {
             main: 'Stops',
             favourites: 'Favourites',
             login: 'Login',
+            logout: 'Logout',
             register: 'Register',
         },
         track: {
@@ -27,12 +28,20 @@ export default {
             password: 'Password',
             submit: 'Submit',
         },
+        logout: {
+            success: 'Logged out successfully',
+            notLogged: 'You are not logged in',
+        },
+        register: {
+            success: 'Registered successfully',
+        },
     },
     pl: {
         menu: {
             main: 'Przystanki',
             favourites: 'Ulubione',
             login: 'Logowanie',
+            logout: 'Wyloguj się',
             register: 'Rejestracja',
         },
         track: {
@@ -55,6 +64,13 @@ export default {
             login: 'Login',
             password: 'Hasło',
             submit: 'Wyślij',
+        },
+        logout: {
+            success: 'Udało się wylogować',
+            notLogged: 'Nie jesteś zalogowany',
+        },
+        register: {
+            success: 'Udana rejestracja',
         },
     },
 }

@@ -8,8 +8,10 @@ export default class ApiService {
         return Fetcher.Get<Stop[]>(`${ApiService.API_URL}/stops`);
     }
 
-    static getFavourites(): Promise<Stop[]> {
-        return Fetcher.Get<Stop[]>(`${ApiService.API_URL}/favourites`);
+    static getFavourites(token: string): Promise<Stop[]> {
+        return Fetcher.Get<Stop[]>(`${ApiService.API_URL}/favourites`, {}, {
+            "Authorization": `Bearer ${token}`
+        });
     }
 
     static async addFavourites(token: string) {
@@ -39,7 +41,13 @@ export default class ApiService {
     }
 
     static async logoutUser(token: string) {
-        await Fetcher.Post(`${ApiService.API_URL}/login`, {}, {
+        await Fetcher.Post(`${ApiService.API_URL}/logout`, {}, {
+            "Authorization": `Bearer ${token}`
+        });
+    }
+
+    static async isAuthorized(token: string) {
+        await Fetcher.Post(`${ApiService.API_URL}/authorized`, {}, {
             "Authorization": `Bearer ${token}`
         });
     }

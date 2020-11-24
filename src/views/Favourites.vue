@@ -28,12 +28,16 @@ export default class Favourites extends Vue {
     private error: string = '';
 
     created() {
-        ApiService.getFavourites().then(stops => {
-            this.stops = stops;
-            this.loading = false;
-        }).catch(e => {
-            this.error = e;
-        });
+        if(this.$store.state.token === null) {
+            this.error = 'Unauthorized';
+        } else {
+            ApiService.getFavourites(this.$store.state.token).then(stops => {
+                this.stops = stops;
+                this.loading = false;
+            }).catch(e => {
+                this.error = e;
+            });
+        }
     }
 }
 </script>
