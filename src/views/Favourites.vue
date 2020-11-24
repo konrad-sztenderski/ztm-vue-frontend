@@ -1,13 +1,20 @@
 <template>
     <div class="container">
-        <StopsTable v-if="!loading" :stops="stops">
-            <template #default="{row}">
-                tak {{row.stopId}}
-            </template>
-        </StopsTable>
-        <div v-else-if="error" class="text-danger text-center">
+        <div v-if="success" class="text-success m-2">
+            {{success}}
+        </div>
+        <div v-if="error" class="text-danger m-2">
             {{error}}
         </div>
+        <StopsTable v-else-if="!loading" :stops="stops">
+            <template #default="{row}">
+                <span @click="(e) => {
+                    e.stopPropagation();
+                    deleteFromFavourites(row.stopId)
+                }" class="cursor-pointer text-info font-weight-bold">{{$i18n('table.delete')}}
+                </span>
+            </template>
+        </StopsTable>
         <Loader v-else/>
     </div>
 </template>
@@ -23,9 +30,10 @@ import Loader from '@/components/Loader.vue';
     components: {StopsTable, Loader}
 })
 export default class Favourites extends Vue {
+    private success = '';
+    private error = '';
     private loading = true;
     private stops!: Stop[];
-    private error: string = '';
 
     created() {
         if(this.$store.state.token === null) {
@@ -38,6 +46,16 @@ export default class Favourites extends Vue {
                 this.error = e;
             });
         }
+    }
+
+    deleteFromFavourites(stopId: number) {
+        ApiService.deleteFavourites(this.$store.state.token ?? '', stopId).then(() => {
+            this.success = `${this.$i18n('table.success.delete')} ${stopId}`;
+            this.error = '';
+        }).catch(e => {
+            this.error = e;
+            this.success = '';
+        })
     }
 }
 </script>

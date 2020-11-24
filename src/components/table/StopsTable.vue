@@ -2,7 +2,11 @@
     <div>
         <Table :key="tableKey" :headers="table.headers" :rows="table.data" :colsKeys="table.colsKeys"
                :startIdx="(this.currPage.value - 1) * 10">
-            <template #stopId="{cell}">{{cell}}</template>
+            <template #stopId="{cell}">
+                <router-link :to="`/stop/${cell}`">
+                    {{cell}}
+                </router-link>
+            </template>
             <template #stopName="{cell}">{{cell}}</template>
             <template #zoneName="{cell}">{{cell}}</template>
             <template #stopLat="{cell}">{{cell}}</template>

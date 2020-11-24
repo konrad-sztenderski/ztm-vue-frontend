@@ -14,14 +14,18 @@ export default class ApiService {
         });
     }
 
-    static async addFavourites(token: string) {
-        await Fetcher.Post(`${ApiService.API_URL}/favourites`, {}, {
+    static async addFavourites(token: string, stopId: number) {
+        await Fetcher.Post(`${ApiService.API_URL}/favourites`, {
+            stopId
+        }, {
             "Authorization": `Bearer ${token}`
         });
     }
 
-    static async deleteFavourites(token: string) {
+    static async deleteFavourites(token: string, stopId: number) {
         await Fetcher.Delete(`${ApiService.API_URL}/favourites`, {
+            stopId
+        }, {
             "Authorization": `Bearer ${token}`
         });
     }
@@ -47,8 +51,32 @@ export default class ApiService {
     }
 
     static async isAuthorized(token: string) {
-        await Fetcher.Post(`${ApiService.API_URL}/authorized`, {}, {
+        await Fetcher.Get(`${ApiService.API_URL}/authorized`, {}, {
             "Authorization": `Bearer ${token}`
         });
     }
+
+    static async getStopInfo(stopId: number): Promise<ZTMDelay['delay']> {
+        return (await Fetcher.Get('https://ckan2.multimediagdansk.pl/delays', {
+            stopId
+        })).delay;
+    }
+}
+
+export type ZTMDelay = {
+    lastUpdate: string,
+    delay: {
+        id: string,
+        delayInSeconds: number,
+        estimatedTime: string,
+        headsign: string,
+        routeId: number,
+        tripId: number,
+        status: string,
+        theoreticalTime: string,
+        timestamp: string,
+        trip: number,
+        vehicleCode: number,
+        vehicleId: number
+    }[]
 }

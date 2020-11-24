@@ -35,6 +35,28 @@ export default {
         register: {
             success: 'Registered successfully',
         },
+        table: {
+            add: 'ADD',
+            delete: 'DEL',
+            success: {
+                add: 'Added to favourites',
+                delete: 'Deleted from favourites',
+            },
+            error: {
+                add: 'Failed while adding to favourites',
+                delete: 'Failed while deleting from favourites',
+            },
+        },
+        stop: {
+            invalid: 'Invalid stop',
+            table: {
+                delayInSeconds: 'Delay',
+                estimatedTime: 'Estimated time',
+                headsign: 'Heading',
+                routeId: 'Route number',
+                theoreticalTime: 'Theoretical time',
+            },
+        },
     },
     pl: {
         menu: {
@@ -71,6 +93,28 @@ export default {
         },
         register: {
             success: 'Udana rejestracja',
+        },
+        table: {
+            add: 'DODAJ',
+            delete: 'USUŃ',
+            success: {
+                add: 'Dodano do ulubionych',
+                delete: 'Usunięto z ulubionych',
+            },
+            error: {
+                add: 'Nie udało się dodać do ulubionych',
+                delete: 'Nie udało się usunąć z ulubionych',
+            },
+        },
+        stop: {
+            invalid: 'Niepoprawny przystanek',
+            table: {
+                delayInSeconds: 'Opóźnienie',
+                estimatedTime: 'Przewidywany czas',
+                headsign: 'Kierunek',
+                routeId: 'Numer linii',
+                theoreticalTime: 'Czas według rozkładu',
+            },
         },
     },
 }

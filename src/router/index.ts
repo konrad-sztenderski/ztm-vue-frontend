@@ -22,6 +22,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/logout',
     component: () => import('@/views/Logout.vue')
   },
+  {
+    path: '/stop/:id',
+    component: () => import('@/views/Stop.vue')
+  },
 ]
 
 const router = createRouter({

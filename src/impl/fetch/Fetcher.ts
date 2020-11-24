@@ -48,10 +48,14 @@ export default class Fetcher {
         return Fetcher.ParseRequest(request);
     }
 
-    static async Delete<T = DefaultFetchType>(path: string, headers: HeadersType = {}): Promise<T> {
+    static async Delete<T = DefaultFetchType, K = {}>(path: string, data: K, headers: HeadersType = {}): Promise<T> {
         let request = new Request(path, {
             method: 'DELETE',
-            headers,
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                ...headers
+            },
         });
 
         return Fetcher.ParseRequest(request);

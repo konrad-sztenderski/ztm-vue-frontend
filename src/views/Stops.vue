@@ -1,8 +1,18 @@
 <template>
     <div class="container">
+        <div v-if="success" class="text-success m-2">
+            {{success}}
+        </div>
+        <div v-if="error" class="text-danger m-2">
+            {{error}}
+        </div>
         <StopsTable v-if="!loading" :stops="stops">
             <template #default="{row}">
-                tak {{row.stopId}}
+                <span @click="(e) => {
+                    e.stopPropagation();
+                    addToFavourites(row.stopId)
+                }" class="cursor-pointer text-info font-weight-bold">{{$i18n('table.add')}}
+                </span>
             </template>
         </StopsTable>
         <Loader v-else/>
@@ -20,6 +30,8 @@ import Loader from '@/components/Loader.vue';
     components: {StopsTable, Loader}
 })
 export default class Stops extends Vue {
+    private success = '';
+    private error = '';
     private loading = true;
     private stops!: Stop[];
 
@@ -28,6 +40,16 @@ export default class Stops extends Vue {
             this.stops = stops;
             this.loading = false;
         });
+    }
+
+    addToFavourites(stopId: number) {
+        ApiService.addFavourites(this.$store.state.token ?? '', stopId).then(() => {
+            this.success = `${this.$i18n('table.success.add')} ${stopId}`;
+            this.error = '';
+        }).catch(e => {
+            this.error = e;
+            this.success = '';
+        })
     }
 }
 </script>
