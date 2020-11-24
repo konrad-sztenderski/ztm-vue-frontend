@@ -2,7 +2,7 @@
     <table class="table text-center">
         <thead>
         <tr>
-            <th v-for="(header, idx) of headers" scope="col" class="cursor-pointer header" :key="idx"
+            <th v-for="(header, idx) of headers" scope="col" class="cursor-pointer table-header" :key="idx"
                 @click="() => sortData(header.sort, idx)">
                 {{header.value}}
             </th>
@@ -10,8 +10,8 @@
         </thead>
         <tbody>
         <tr v-for="(row, idx) of showData.value" :key="idx">
-            <td v-for="key in rowsKeys" :key="key">
-                <slot :name="key" :cell="row[key]"/>
+            <td v-for="key in colsKeys" :key="key">
+                <slot :name="key" :cell="row[key] !== undefined ? row[key] : row"/>
             </td>
         </tr>
         </tbody>
@@ -31,7 +31,7 @@ export type TableHeader<R> = {
 export default class Table extends Vue {
     @Prop() readonly headers!: TableHeader<any>[];
     @Prop() readonly rows!: { [key: string]: any }[];
-    @Prop() readonly rowsKeys!: string[];
+    @Prop() readonly colsKeys!: string[];
     @Prop({default: 10}) readonly maxRows!: number;
     @Prop({default: 0}) readonly startIdx!: number;
 
@@ -56,11 +56,7 @@ export default class Table extends Vue {
 </script>
 
 <style scoped>
-.header {
-    width:calc(100% * 1 / 5);
-}
-
-.header:hover {
+.table-header:hover {
     background:#42b983;
 }
 </style>

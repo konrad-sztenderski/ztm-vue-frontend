@@ -4,6 +4,7 @@ export default {
             main: 'Stops',
             favourites: 'Favourites',
             login: 'Login',
+            register: 'Register',
         },
         track: {
             direction: "Direction",
@@ -18,7 +19,13 @@ export default {
                 stopId: 'Id',
                 stopLat: 'Latitude',
                 stopLon: 'Longitude',
+                operations: "Operations",
             },
+        },
+        form: {
+            login: 'Login',
+            password: 'Password',
+            submit: 'Submit',
         },
     },
     pl: {
@@ -26,6 +33,7 @@ export default {
             main: 'Przystanki',
             favourites: 'Ulubione',
             login: 'Logowanie',
+            register: 'Rejestracja',
         },
         track: {
             direction: "Kierunek",
@@ -40,7 +48,13 @@ export default {
                 stopId: 'Id',
                 stopLat: 'Szerokość geograficzna',
                 stopLon: 'Długość geograficzna',
+                operations: "Operacje",
             },
+        },
+        form: {
+            login: 'Login',
+            password: 'Hasło',
+            submit: 'Wyślij',
         },
     },
 }

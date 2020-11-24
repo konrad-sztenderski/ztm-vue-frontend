@@ -1,3 +1,5 @@
+import {USER} from '@/store/LocalStorageKeys';
+
 export type Menu = {
     href: string
     content: string
@@ -5,7 +7,7 @@ export type Menu = {
 
 export type State = {
     menu: Menu[]
-    username: string
+    user: string | null
 }
 
 export const BASE_MENU: Menu[] = [{
@@ -14,6 +16,9 @@ export const BASE_MENU: Menu[] = [{
 }, {
     href: '/login',
     content: 'menu.login'
+}, {
+    href: '/register',
+    content: 'menu.register'
 }];
 
 export const LOGGED_MENU: Menu[] = [{
@@ -29,5 +34,5 @@ export const LOGGED_MENU: Menu[] = [{
 
 export const state: State = {
     menu: BASE_MENU,
-    username: '',
+    user: localStorage.getItem(USER),
 }

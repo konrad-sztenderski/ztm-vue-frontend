@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <h1>{{$i18n('menu.login')}}</h1>
-        <Form @sendForm="submitLogin"/>
+        <h1>{{$i18n('menu.register')}}</h1>
+        <Form @sendForm="submitRegister"/>
     </div>
 </template>
 
@@ -14,9 +14,9 @@ import Form, {FormInputs} from '@/components/Form.vue';
         Form
     }
 })
-export default class Login extends Vue {
+export default class Register extends Vue {
 
-    submitLogin(inputs: FormInputs) {
+    submitRegister(inputs: FormInputs) {
         console.log(inputs);
     }
 }
