@@ -3,6 +3,7 @@
         <router-link v-for="link of $store.state.menu" class="m-2" :key="link.href" :to="link.href">
             {{$i18n(link.content)}}
         </router-link>
+        <span v-if="$store.state.user">({{$store.state.user}})</span>
     </div>
 </template>
 <script lang="ts">
