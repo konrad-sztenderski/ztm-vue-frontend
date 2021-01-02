@@ -1,4 +1,4 @@
-# vue
+# Frontend for a site presenting ZTM stops
 
 ## Project setup
 ```

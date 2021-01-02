@@ -1,38 +1,29 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-    |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+    <Menu/>
+    <router-view/>
 </template>
 
 <script lang="ts">
-import {Vue} from 'vue-class-component';
+import {Options, Vue} from 'vue-class-component';
+import Menu from '@/components/Menu.vue';
+import ApiService from '@/impl/services/ApiService';
+import {MutationsTypes} from '@/store/mutations';
+import {BASE_MENU} from '@/store/state';
 
+@Options({
+    components: {
+        Menu
+    }
+})
 export default class App extends Vue {
+    created() {
+        if(this.$store.state.token !== null) {
+            ApiService.isAuthorized(this.$store.state.token).catch(() => {
+                this.$store.commit(MutationsTypes.REMOVE_USER);
+                this.$store.commit(MutationsTypes.REMOVE_TOKEN);
+                this.$store.commit(MutationsTypes.SET_MENU, BASE_MENU);
+            });
+        }
+    }
 }
 </script>
-
-<style>
-#app {
-  font-family:Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  text-align:center;
-  color:#2c3e50;
-}
-
-#nav {
-  padding:30px;
-}
-
-#nav a {
-  font-weight:bold;
-  color:#2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color:#42b983;
-}
-</style>
